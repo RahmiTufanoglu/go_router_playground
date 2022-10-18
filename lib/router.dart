@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:go_router_playground/details_page.dart';
 import 'package:go_router_playground/settings/index.dart';
-import 'package:go_router_playground/settings/settings_page.dart';
 import 'package:go_router_playground/home_page.dart';
 import 'package:go_router_playground/router_observer.dart';
 import 'package:go_router_playground/scaffold_with_bottom_nav_bar.dart';
@@ -11,8 +10,8 @@ const home = HomePage.routeName;
 const details = DetailsPage.routeName;
 const settings = SettingsPage.routeName;
 
-final _rootNavigatorKey = GlobalKey<NavigatorState>();
-final _shellNavigatorKey = GlobalKey<NavigatorState>();
+final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
+final _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
 
 final tabs = [
   const ScaffoldWithNavBarTabItem(
@@ -34,9 +33,7 @@ final router = GoRouter(
   routes: [
     ShellRoute(
       navigatorKey: _shellNavigatorKey,
-      builder: (_, __, child) {
-        return ScaffoldWithBottomNavBar(tabs: tabs, child: child);
-      },
+      builder: (_, __, child) => ScaffoldWithBottomNavBar(tabs: tabs, child: child),
       routes: [
         GoRoute(
           path: '/',
@@ -66,7 +63,7 @@ final router = GoRouter(
         ),
         GoRoute(
           name: settings,
-          path: '/$settings/:tab(${SettingsTabA.routeName}|${SettingsTabB.routeName})',
+          path: '/$settings/:settings_tab(${SettingsTabA.routeName}|${SettingsTabB.routeName})',
           pageBuilder: (_, state) {
             return NoTransitionPage(
               key: state.pageKey,

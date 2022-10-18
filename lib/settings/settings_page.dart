@@ -21,12 +21,12 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
 
   void _onTap(int index) {
     String getRouteName() {
-      return (index == 1) ? SettingsTabB.routeName : SettingsTabA.routeName;
+      return (index == 0) ? SettingsTabA.routeName : SettingsTabB.routeName;
     }
 
     context.goNamed(
       SettingsPage.routeName,
-      params: {'tab': getRouteName()},
+      params: {'settings_tab': getRouteName()},
     );
   }
 

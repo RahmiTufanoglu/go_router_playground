@@ -47,7 +47,7 @@ class _ScaffoldWithBottomNavBarState extends State<ScaffoldWithBottomNavBar> {
       if (tabIndex == 1) {
         context.goNamed(
           SettingsPage.routeName,
-          params: {'tab': SettingsTabA.routeName},
+          params: {'settings_tab': SettingsTabA.routeName},
         );
       }
     }

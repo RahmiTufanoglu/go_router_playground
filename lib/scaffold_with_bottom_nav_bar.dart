@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:go_router_playground/home_page.dart';
-import 'package:go_router_playground/settings/index.dart';
 
 @immutable
 class ScaffoldWithNavBarTabItem extends BottomNavigationBarItem {
@@ -40,16 +38,14 @@ class _ScaffoldWithBottomNavBarState extends State<ScaffoldWithBottomNavBar> {
 
   void _onItemTapped(BuildContext context, int tabIndex) {
     // Only navigate if the tab index has changed
-    if (tabIndex != _currentIndex) {
-      if (tabIndex == 0) {
-        context.goNamed(HomePage.routeName);
-      }
-      if (tabIndex == 1) {
-        context.goNamed(
-          SettingsPage.routeName,
-          params: {'settings_tab': SettingsTabA.routeName},
-        );
-      }
+    if (tabIndex == _currentIndex) return;
+
+    if (tabIndex == 0) {
+      context.go('/home');
+    }
+
+    if (tabIndex == 1) {
+      context.go('/settings/settings_tab_a');
     }
   }
 

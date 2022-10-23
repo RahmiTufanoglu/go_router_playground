@@ -5,7 +5,7 @@ import 'package:go_router_playground/apps_flyer_config.dart';
 
 @immutable
 class DetailsPage extends StatefulWidget {
-  static const routeName = 'details';
+  static const name = 'details';
 
   const DetailsPage({super.key});
 
@@ -14,7 +14,7 @@ class DetailsPage extends StatefulWidget {
 }
 
 class DetailsPageState extends State<DetailsPage> {
-  Future<void> logEvent(String eventName, Map? eventValues) async {
+  Future<void> _logEvent(String eventName, Map? eventValues) async {
     bool? result;
     try {
       result = await appsflyerSdk.logEvent(eventName, eventValues);
@@ -36,12 +36,14 @@ class DetailsPageState extends State<DetailsPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              onPressed: () => logEvent('af_click', {'foo': true}),
+              //onPressed: () => _logEvent('af_click', {'foo': true}),
+              onPressed: () {},
               child: const Text('Click Event'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () => logEvent('af_press', {'boo': 42}),
+              //onPressed: () => _logEvent('af_press', {'boo': 42}),
+              onPressed: () {},
               child: const Text('Press Event'),
             ),
           ],

@@ -1,15 +1,23 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 @immutable
 class SettingsTabB extends StatelessWidget {
-  static const routeName = 'settings_tab_b';
+  static const name = 'settings_tab_b';
 
   const SettingsTabB({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Settings Tab B'),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text('Settings Tab B'),
+        const SizedBox(height: 20),
+        TextButton(
+          child: const Text('Foo'),
+          onPressed: () {},
+        ),
+      ],
     );
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 @immutable
 class SettingsTabA extends StatelessWidget {
-  static const routeName = 'settings_tab_a';
+  static const name = 'settings_tab_a';
 
   const SettingsTabA({super.key});
 

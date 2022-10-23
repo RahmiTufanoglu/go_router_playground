@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:go_router_playground/details_page.dart';
+import 'package:go_router_playground/app_dialog.dart';
+import 'package:go_router_playground/service_locator.dart';
 
 @immutable
 class HomePage extends StatelessWidget {
-  static const routeName = 'home';
+  static const name = 'home';
 
-  const HomePage({
-    super.key,
-    required this.label,
-    required this.detailsPath,
-  });
-
-  final String label;
-  final String detailsPath;
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +20,28 @@ class HomePage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text('Home', style: Theme.of(context).textTheme.titleLarge),
-            const Padding(padding: EdgeInsets.all(4)),
+            const SizedBox(height: 100),
             TextButton(
               child: const Text('Go to Detail'),
-              onPressed: () => context.goNamed(DetailsPage.routeName),
+              onPressed: () => context.go('/home/details'),
+            ),
+            const SizedBox(height: 100),
+            TextButton(
+              child: const Text('Go to Login'),
+              onPressed: () {
+                context.push('/login');
+                if (loginProviderLogic.isLoggedIn) {
+                  AppDialog.showSimpleDialog(context, title: 'Already logged in');
+                }
+              },
+            ),
+            const SizedBox(height: 100),
+            TextButton(
+              child: const Text('Login me'),
+              onPressed: () {
+                loginProviderLogic.isLoggedIn = true;
+                AppDialog.showSimpleDialog(context, title: 'User logged in');
+              },
             ),
           ],
         ),

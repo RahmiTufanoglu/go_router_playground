@@ -5,7 +5,7 @@ import 'package:go_router_playground/settings/settings_tab_b.dart';
 
 @immutable
 class SettingsPage extends StatefulWidget {
-  static const routeName = 'settings';
+  static const name = 'settings';
 
   const SettingsPage({super.key});
 
@@ -20,14 +20,8 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
   ];
 
   void _onTap(int index) {
-    String getRouteName() {
-      return (index == 0) ? SettingsTabA.routeName : SettingsTabB.routeName;
-    }
-
-    context.goNamed(
-      SettingsPage.routeName,
-      params: {'settings_tab': getRouteName()},
-    );
+    String selectedTab = (index == 0) ? 'settings_tab_a' : 'settings_tab_b';
+    context.go('/settings/$selectedTab');
   }
 
   @override
